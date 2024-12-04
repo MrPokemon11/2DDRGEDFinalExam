@@ -42,6 +42,8 @@ public class SpawnPiece : MonoBehaviour
         piecePrefabs[5] = Resources.Load("Prefabs/Teewee") as GameObject;
         piecePrefabs[6] = Resources.Load("Prefabs/Smashboy") as GameObject;
 
+        
+        
         instantiatePieces();
 
         SpawnNewPiece();
@@ -75,9 +77,11 @@ public class SpawnPiece : MonoBehaviour
     {
         foreach (var piece in piecePrefabs)
         {
+            // add three of each prefab to the pool. 
+            // returns "ArgumentException: The Object you want to instantiate is null."
             for (int i = 0; i < 3; i++)
             {
-                pool.Append(Instantiate(piece, gameObject.transform));
+                pool.Append<GameObject>(Instantiate(piece, gameObject.transform));
             }
         }
     }
